@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import HomePage from './HomePage/Homepage'
 import Employee from './Employee/Employee'
 import ShiftMan from './Shift Management/Shiftman'
-import Settings from './Settings/Settings'
+import Settings from './Settings/SettingsRouter'
 import Help from './Help/Help'
 
 export default class ContentRouter extends Component {
