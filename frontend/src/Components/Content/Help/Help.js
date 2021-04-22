@@ -5,7 +5,7 @@ function Help() {
         <div>
             <h1>
                 <div>
-                    <br /><br />Help Component<br /><br /><br />
+                    <br /><br />Help Component 123<br /><br /><br />
                 </div>
             </h1>
         </div>
