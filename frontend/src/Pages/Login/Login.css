@@ -1,12 +1,12 @@
 /* Bordered form */
 form {
     width: 350px;
-    height: 350px;
+    height: 550px;
     position: absolute;
     top: 5%;
     left: 37%;
     color: black;
-    border: 3px solid #f1f1f1;
+    border: 3px solid rgb(162, 189, 66);
   }
   
   /* Full-width inputs */
