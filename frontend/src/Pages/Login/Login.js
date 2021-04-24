@@ -33,9 +33,6 @@ class Login extends React.Component {
                                     <input type="checkbox" defaultChecked="checked" name="remember" /> Remember me
                                 </label>
                             </div>
-                            <div className="container" style={{ backgroundColor: '#f1f1f1' }}>
-                                <span className="psw">Forgot <a href="#">password?</a></span>
-                            </div>
                         </div>
 
                     </form>
