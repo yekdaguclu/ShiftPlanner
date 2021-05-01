@@ -3,6 +3,10 @@ const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
 
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 app.use(cors());
 app.use(express.json());
 
@@ -23,11 +27,12 @@ app.post("/create", (req, res) => {
   const Mail = req.body.Mail;
   const Department = req.body.Department;
 
-  db.query("INSERT INTO employees (Idnumber,Name,Surname,Password,DateofBirth,Position,Mail,Department) VALUES (?,?,?,?,?,?,?,?)", [
+  bcrypt.hash(Password,saltRounds,(err,hash)=>{
+    db.query("INSERT INTO employees (Idnumber,Name,Surname,Password,DateofBirth,Position,Mail,Department) VALUES (?,?,?,?,?,?,?,?)", [
     Idnumber,
     Name,
     Surname,
-    Password,
+    hash,
     DateofBirth,
     Position,
     Mail,
@@ -40,6 +45,9 @@ app.post("/create", (req, res) => {
         res.send("asdf");
       }
     };
+  })
+
+  
 });
 
 app.put("/update", (req, res) => {
@@ -71,6 +79,7 @@ app.put("/update", (req, res) => {
     };
 });
 
+
 app.get("/employee", (req, res) => {
   db.query("SELECT * FROM employees", (err, result) => {
     if (err) {
@@ -90,6 +99,39 @@ app.delete('/delete/:Idnumber',(req,res)=>{
       res.send(result);
     }
   })
+})
+
+app.get("/login", (req, res) => {
+  if (req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+  }
+});
+
+
+app.post("/login",(req,res)=>{
+  const Idnumber = req.body.Idnumber;
+  const Password = req.body.Password;
+
+  db.query("SELECT * FROM employees WHERE Idnumber = ?;"),Idnumber,(err,result)=>{
+    if(err){
+      res.send({err:err})
+    }
+    if(result.length>0){
+      bcrypt.compare(Password,result[0].Password,(err,response)=>{
+        if(response){
+          res.send(result)
+        }else{
+          res.send({message: "Wrong id or password"})
+        }
+      })
+    }
+    else{
+      res.send({message: "User does not exist"})
+    }
+  }
+
 })
 
 app.get("/", (req, res) => {

@@ -1,7 +1,8 @@
-import React from 'react';
+import Axios from 'axios';
+import React  from "react";
 import './Login.css'
-
 class Login extends React.Component {
+    
     state = {
         email: '',
         pwd: ''
@@ -14,7 +15,9 @@ class Login extends React.Component {
         e.preventDefault()
         this.props.isLogin(true)
     }
+
     render() {
+       
         return (
             <div>
                 <div>
@@ -24,17 +27,13 @@ class Login extends React.Component {
                                 <img src="dist/img/Logo1.jpg" alt="Avatar" className="avatar" />
                             </div>
                             <div className="container">
-                                <label htmlFor="email"><b>Email</b></label>
+                                <label htmlFor="Id"><b>Id</b></label>
                                 <input type="text" placeholder="Enter Email" name="email" required />
                                 <label htmlFor="psw"><b>Password</b></label>
                                 <input type="password" placeholder="Enter Password" name="psd" required />
                                 <button type="submit">Login</button>
-                                <label>
-                                    <input type="checkbox" defaultChecked="checked" name="remember" /> Remember me
-                                </label>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>

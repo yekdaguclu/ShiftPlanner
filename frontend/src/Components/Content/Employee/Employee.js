@@ -158,9 +158,11 @@ function Employee() {
           {employeeList.map((val, key) => {
             return (
               <div className="employee">
-                <h3>{val.Idnumber}</h3>
-                <h3>{val.Name}</h3>
-                <h3>{val.Surname}</h3>
+                <table>
+                  <tr>{val.Idnumber}</tr>
+                  <tr>{val.Name}</tr>
+                  <tr>{val.Surname}</tr>
+                </table>
               </div>
             );
           })}
